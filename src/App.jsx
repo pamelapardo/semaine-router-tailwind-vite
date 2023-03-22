@@ -1,6 +1,23 @@
-import Img1 from './assets/hero-bg.png'
+import { useState, useEffect } from 'react'
+import { database } from './firebase/firebase'
+import { collection, addDoc } from "firebase/firestore"; 
 
 function App() {
+  useEffect(() => {
+    addAchat()
+  },[]
+  )
+  const addAchat = async (collectionName, achatData) => {
+    try {
+      const achatRef = await addDoc(collection(database, collectionName), achatData);
+      console.log("Document written with ID: ", achatRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+
+  const [count, setCount] = useState(1)
+
   return (
     <div className="bg-milk w-full h-full">
       <div className="m-10 overflow-hidden">
@@ -74,7 +91,12 @@ function App() {
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-tshirts.jpg')] bg-cover bg-center bg-no-repeat"></div>
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">T-Shirts</h3>
-              <button type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Voir plus</button>
+              <div className='flex flex-row mt-2'>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setCount((count) => count + 1)}>+</button>
+                <h4 className="bg-choco px-2">{count}</h4>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setCount((count) => count - 1)}>-</button>
+              </div>
+              <button onClick={() => addAchat( 'achats', {product: 'nada', quantity: '9'})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Acheter</button>
             </div>
           </div>
 
