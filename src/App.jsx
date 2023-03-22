@@ -16,7 +16,9 @@ function App() {
     }
   }
 
-  const [count, setCount] = useState(1)
+  const [shirtCounter, setShirtCounter] = useState(1)
+  const [planteCounter, setPlanteCounter] = useState(1)
+  const [bijouxCounter, setBijouCounter] = useState(1)
 
   return (
     <div className="bg-milk w-full h-full">
@@ -91,19 +93,24 @@ function App() {
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-tshirts.jpg')] bg-cover bg-center bg-no-repeat"></div>
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">T-Shirts</h3>
-              <div className='flex flex-row mt-2'>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setCount((count) => count + 1)}>+</button>
-                <h4 className="bg-choco px-2">{count}</h4>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setCount((count) => count - 1)}>-</button>
+              <div className='flex flex-row justify-center ite mt-2'>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setShirtCounter((shirtCounter) => shirtCounter + 1)}>+</button>
+                <h4 className="bg-choco w-6 text-center">{shirtCounter}</h4>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setShirtCounter((shirtCounter) => shirtCounter - 1)}>-</button>
               </div>
-              <button onClick={() => addAchat( 'achats', {product: 'nada', quantity: '9'})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Acheter</button>
+              <button onClick={() => addAchat( 'achats', {product: 'tshirt', quantity: {shirtCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
           </div>
 
           <div className="flex flex-row justify-between gap-5">
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
-              <h3 className="font-title text-5xl text-milk mb-3">Jardin</h3>
-              <button type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Voir plus</button>
+              <h3 className="font-title text-5xl text-milk">Jardin</h3>
+              <div className='flex flex-row justify-center ite mt-2'>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setPlantCeounter((planteCounter) => planteCounter + 1)}>+</button>
+                <h4 className="bg-choco w-6 text-center">{planteCounter}</h4>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setPlanteCounter((planteCounter) => planteCounter - 1)}>-</button>
+              </div>
+              <button onClick={() => addAchat( 'achats', {product: 'Plante', quantity: {planteCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-jardin.jpg')] bg-cover bg-center bg-no-repeat"></div>
           </div>
@@ -111,8 +118,13 @@ function App() {
           <div className="flex flex-row justify-between gap-5">
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-bijoux.jpg')] bg-cover bg-center bg-no-repeat"></div>
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
-              <h3 className="font-title text-5xl text-milk mb-3">Bijoux</h3>
-              <button type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Voir plus</button>
+              <h3 className="font-title text-5xl text-milk">Bijoux</h3>
+              <div className='flex flex-row justify-center ite mt-2'>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter + 1)}>+</button>
+                <h4 className="bg-choco w-6 text-center">{bijouxCounter}</h4>
+                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter - 1)}>-</button>
+              </div>
+              <button onClick={() => addAchat( 'achats', {product: 'bijoux', quantity: {bijouxCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
           </div>
         </div>
