@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react'
-import { database } from './firebase/firebase'
-import { collection, addDoc } from "firebase/firestore"; 
+import { useState, useEffect, useContext } from 'react'
+import { CartContext } from "./panier/cartContext";
 
 function App() {
-  useEffect(() => {
-    addAchat()
-  },[]
-  )
-  const addAchat = async (collectionName, achatData) => {
-    try {
-      const achatRef = await addDoc(collection(database, collectionName), achatData);
-      console.log("Document written with ID: ", achatRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  }
+
+  // useEffect(() => {
+  //   addAchat()
+  // },[]
+  // )
+  //const addAchat = async (collectionName, achatData) => {
+    //try {
+      //const achatRef = await addDoc(collection(database, collectionName), achatData);
+      //console.log("Document written with ID: ", achatRef.id);
+    //} catch (e) {
+      //console.error("Error adding document: ", e);
+    //}
+  //}
+
+  const {addToCart} = useContext(CartContext); 
 
   const [shirtCounter, setShirtCounter] = useState(1)
   const [planteCounter, setPlanteCounter] = useState(1)
@@ -94,11 +96,11 @@ function App() {
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">T-Shirts</h3>
               <div className='flex flex-row justify-center ite mt-2'>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setShirtCounter((shirtCounter) => shirtCounter + 1)}>+</button>
+                <button onClick={() => setShirtCounter((shirtCounter) => shirtCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" >-</button>
                 <h4 className="bg-choco w-6 text-center">{shirtCounter}</h4>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setShirtCounter((shirtCounter) => shirtCounter - 1)}>-</button>
+                <button onClick={() => setShirtCounter((shirtCounter) => shirtCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" >+</button>
               </div>
-              <button onClick={() => addAchat( 'achats', {product: 'tshirt', quantity: {shirtCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
+              <button onClick={() => addToCart({product: 'tshirt', quantity: shirtCounter})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
           </div>
 
@@ -106,11 +108,11 @@ function App() {
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">Jardin</h3>
               <div className='flex flex-row justify-center ite mt-2'>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setPlantCeounter((planteCounter) => planteCounter + 1)}>+</button>
+                <button onClick={() => setPlantCounter((planteCounter) => planteCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" >-</button>
                 <h4 className="bg-choco w-6 text-center">{planteCounter}</h4>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setPlanteCounter((planteCounter) => planteCounter - 1)}>-</button>
+                <button onClick={() => setPlanteCounter((planteCounter) => planteCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full">+</button>
               </div>
-              <button onClick={() => addAchat( 'achats', {product: 'Plante', quantity: {planteCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
+              <button onClick={() => addToCart( {product: 'plante', quantity: planteCounter})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-jardin.jpg')] bg-cover bg-center bg-no-repeat"></div>
           </div>
@@ -120,17 +122,17 @@ function App() {
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">Bijoux</h3>
               <div className='flex flex-row justify-center ite mt-2'>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter + 1)}>+</button>
+                <button onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full">-</button>
                 <h4 className="bg-choco w-6 text-center">{bijouxCounter}</h4>
-                <button className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter - 1)}>-</button>
+                <button onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full">+</button>
               </div>
-              <button onClick={() => addAchat( 'achats', {product: 'bijoux', quantity: {bijouxCounter}})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
+              <button onClick={() => addToCart( {product: 'bijoux', quantity: bijouxCounter})} type="button" className="text-xl text-milk font-paragraph rounded-3xl border-2 border-white border-solid px-4 py-2 bg-brown mt-3 hover:drop-shadow-md hover:bg-choco transition duration-300 ease-in-out">Ajouter au panier</button>
             </div>
           </div>
         </div>
 
 
-      </div>
+      </div>-
     </div>
   )
 }
