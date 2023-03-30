@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import Panier from "../panier";
+import Panier from "../panier/panier";
 
 export default function Header() {
   const [show, setShow] = useState(false)
@@ -22,7 +22,7 @@ export default function Header() {
       </div>
       <Panier onClose={() => setShow(false)} show={show}/>
       
-      <div>
+      <div className="h-full w-full">
         <Outlet/>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { CartContext } from './panier/cartContext';
-import { database } from './firebase/firebase'
+import { CartContext } from './cartContext';
+import { database } from '../firebase/firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 
 export default function Panier(props) {

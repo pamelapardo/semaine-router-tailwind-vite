@@ -6,6 +6,7 @@ import Root from "./routes/root";
 import App from "./App"
 import Connect from './connect';
 import CartContextProvider from './panier/cartContext';
+import ProductDetail from './components/productDetail';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       {
         path: "connect",
         element: <Connect/>
-      }
+      },
+      {
+        path: "product_detail",
+        element: <ProductDetail/>
+      },
     ]
   },
 ]);

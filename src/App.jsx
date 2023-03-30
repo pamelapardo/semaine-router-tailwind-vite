@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react'
 import { CartContext } from "./panier/cartContext";
 
+import Carrousel from './components/carrousel';
+
 function App() {
 
   // useEffect(() => {
@@ -36,66 +38,16 @@ function App() {
 
 
         {/* Carrousel de liens */}
-        <div className=" w-full overflow-auto flex flex-row flex-nowrap gap-12 ">
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">👕</div>
-            <h3 className="text-brown mt-1">T-Shirts</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">👖</div>
-            <h3 className="text-brown mt-1">Pantalons</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🧥</div>
-            <h3 className="text-brown mt-1">Vestes</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🩳</div>
-            <h3 className="text-brown mt-1">Shorts</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">👟</div>
-            <h3 className="text-brown mt-1">Chaussures</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🧢</div>
-            <h3 className="text-brown mt-1">Bonnets</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">💍</div>
-            <h3 className="text-brown mt-1">Bijoux</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">👦🏼</div>
-            <h3 className="text-brown mt-1">Enfants</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🏠</div>
-            <h3 className="text-brown mt-1">Maison</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🪴</div>
-            <h3 className="text-brown mt-1">Jardin</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🎁</div>
-            <h3 className="text-brown mt-1">Cadeaux</h3>
-          </div>
-          <div className="flex flex-col items-center my-7">
-            <div className="bg-latte hover:bg-cream rounded-full lg:h-24 lg:w-24 md:h-16 md:w-16  flex items-center justify-center md:text-4xl lg:text-5xl">🥳</div>
-            <h3 className="text-brown mt-1">Fêtes</h3>
-          </div>
-
-        </div>
+        <Carrousel/>
 
 
-        {/* Grid des elements */}
+        {/* Grid d'elements */}
         <div>
           <div className="flex flex-row justify-between gap-5">
-            <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-tshirts.jpg')] bg-cover bg-center bg-no-repeat"></div>
+            <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-tshirts.jpg')] bg-cover bg-center bg-no-repeat "></div>
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">T-Shirts</h3>
-              <div className='flex flex-row justify-center ite mt-2'>
+              <div className='flex flex-row justify-center mt-2'>
                 <button onClick={() => setShirtCounter((shirtCounter) => shirtCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" >-</button>
                 <h4 className="bg-choco w-6 text-center">{shirtCounter}</h4>
                 <button onClick={() => setShirtCounter((shirtCounter) => shirtCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full" >+</button>
@@ -104,10 +56,10 @@ function App() {
             </div>
           </div>
 
-          <div className="flex flex-row justify-between gap-5">
+          <div className="flex flex-row justify-between -5">
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">Jardin</h3>
-              <div className='flex flex-row justify-center ite mt-2'>
+              <div className='flex flex-row justify-center mt-2'>
                 <button onClick={() => setPlantCounter((planteCounter) => planteCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full" >-</button>
                 <h4 className="bg-choco w-6 text-center">{planteCounter}</h4>
                 <button onClick={() => setPlanteCounter((planteCounter) => planteCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full">+</button>
@@ -121,7 +73,7 @@ function App() {
             <div className="bg-coffee text-white rounded-lg h-48 mb-5 md:basis-[75%] sm:basis-[50%] bg-[url('./assets/bg-bijoux.jpg')] bg-cover bg-center bg-no-repeat"></div>
             <div className="bg-coffee hover:bg-brown transition duration-1000 ease-in-out text-white rounded-lg h-48 mb-5 md:basis-[25%] sm:basis-[50%] flex flex-col justify-center items-center">
               <h3 className="font-title text-5xl text-milk">Bijoux</h3>
-              <div className='flex flex-row justify-center ite mt-2'>
+              <div className='flex flex-row justify-center mt-2'>
                 <button onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter - 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-l-full">-</button>
                 <h4 className="bg-choco w-6 text-center">{bijouxCounter}</h4>
                 <button onClick={() => setBijouCounter((bijouxCounter) => bijouxCounter + 1)} className="flex justify-center items-center px-1 bg-latte border-2 border-white rounded-r-full">+</button>
